@@ -14,8 +14,7 @@ class AuthController(private val authService: AuthService) {
 
     @PostMapping("/authenticate")
     fun authenticate(@RequestBody request: AuthRequest): ResponseEntity<Authentication> {
-        val token = authService.authenticate(request.phone, request.password)
-        return ResponseEntity.ok(token)
+        return ResponseEntity.ok(authService.authenticate(request.phone, request.password))
     }
 
     data class AuthRequest(

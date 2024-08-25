@@ -63,4 +63,4 @@ class GlobalExceptionHandler {
 class NotFoundException(val status: HttpStatus, override val message: String) : Exception()
 class AuthException(override val message: String) : Exception(message)
 class RequestFailedBecauseOf(message: String) : Exception(message)
-class GenericException(message: String) : Exception(message)
+class GenericException(message: String, e: Exception) : Exception(message, e)

@@ -14,10 +14,11 @@ data class Customer(
     val lname: String,
     val password: String
 ) {
+    // TODO Need to remove this once proper authentication is implemented
     constructor() : this(
         phone = "0123456789",
-        fname = "admin",
-        lname = "admin",
+        fname = "test",
+        lname = "test",
         password = "password"
     )
 }
