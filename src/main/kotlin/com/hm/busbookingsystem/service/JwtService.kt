@@ -1,6 +1,6 @@
 package com.hm.busbookingsystem.service
 
-import com.hm.busbookingsystem.extensions.safeCall
+import com.hm.busbookingsystem.extensions.safeParse
 import com.hm.busbookingsystem.model.Customer
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
@@ -25,7 +25,7 @@ class JwtService {
         return extractClaim(token) { it.subject }
     }
 
-    fun <T> extractClaim(token: String, claimResolver: (Claims) -> T): T? = safeCall {
+    fun <T> extractClaim(token: String, claimResolver: (Claims) -> T): T? = safeParse {
         val claims = extractAllClaims(token)
         claimResolver(claims)
     }
@@ -77,7 +77,7 @@ class JwtService {
     }
 
     private val signInKey: Key
-        get() = safeCall {
+        get() = safeParse {
             val keyBytes = Decoders.BASE64.decode(secretKey)
             Keys.hmacShaKeyFor(keyBytes)
         }
