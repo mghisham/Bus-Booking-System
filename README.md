@@ -138,7 +138,7 @@ The system uses an **H2 in-memory database** to store information about:
 ## Running the Application
 
 ### Prerequisites
-- **Java 7+** installed
+- **Java 17** installed
 - **IntelliJ IDEA** installed
 
 ### Steps
