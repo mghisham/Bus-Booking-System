@@ -1,6 +1,7 @@
 package com.hm.busbookingsystem.controller
 
 import com.hm.busbookingsystem.model.Booking
+import com.hm.busbookingsystem.model.request.BookingRequest
 import com.hm.busbookingsystem.service.BookingService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -24,12 +25,4 @@ class BookingController(private val bookingService: BookingService) {
         )
         return ResponseEntity.ok(booking)
     }
-
-    data class BookingRequest(
-        val busNumber: String,
-        val bookingDate: String,
-        val source: String,
-        val destination: String,
-        val totalSeats: Int
-    )
 }
