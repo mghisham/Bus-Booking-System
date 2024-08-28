@@ -18,7 +18,9 @@ This document provides a visual guide to the Bus Booking System, including scree
 - **Screenshot**:
 
   ![Authenticate Request](images/post_api_authenticate_success.png)
-  ![Authenticate Request](images/post_api_authenticate_error.png)
+  ![Authenticate Request](images/jwt_parsed.png)
+  ![Authenticate Request](images/post_api_authenticate_error_password.png)
+  ![Authenticate Request](images/post_api_authenticate_error_user.png)
 
 ### 2. **Get All Buses**
 - **Endpoint**: `GET /booking-system/bus`
@@ -33,21 +35,22 @@ This document provides a visual guide to the Bus Booking System, including scree
 - **Screenshot**:
 
   ![Search Buses](images/get_api_search_success.png)
+  ![Search Buses](images/get_api_search_error_token.png)
 
 ### 4. **Add a New Bus**
 - **Endpoint**: `POST /booking-system/bus`
 - **Description**: Adds a new bus to the system.
 - **Request Body**:
     ```json
-    {
-      "bus_number": "BUS123",
-      "bus_name": "Express",
-      "travel_company": "Fast Travels",
-      "capacity": 50,
-      "available_seats": 50,
-      "source": "City A",
-      "destination": "City B"
-    }
+  {
+      "busNumber" : "86",
+      "busName" : "Romford Station",
+      "travelCompany" : "TFL",
+      "capacity" : 35,
+      "availableSeats" : 20,
+      "source" : "Stratford",
+      "destination" : "Romford"
+  }
     ```
 - **Screenshot**:
 
@@ -60,18 +63,22 @@ This document provides a visual guide to the Bus Booking System, including scree
 - **Description**: Books a seat on a selected bus.
 - **Request Body**:
     ```json
-    {
-      "bus_number": "BUS123",
-      "booking_date": "2024-08-19",
-      "source": "City A",
-      "destination": "City B",
-      "total_seats": 2
-    }
+  {
+      "bookingNumber": 2,
+      "busNumber": "N86",
+      "bookingDate": "2024-08-28",
+      "source": "Romford",
+      "destination": "Stratford",
+      "totalSeats": 20,
+      "bookingStatus": "CONFIRMED"
+  }
     ```
 - **Screenshot**:
 
   ![Book a Seat](images/post_api_book_success.png)
-  ![Book a Seat](images/post_api_book_error.png)
+  ![Book a Seat](images/post_api_book_error_no_seats.png)
+  ![Book a Seat](images/post_api_book_error_not_found.png)
+  ![Book a Seat](images/post_api_book_error_no_token.png)
 
 ## Database Table Screenshots
 

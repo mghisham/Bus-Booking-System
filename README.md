@@ -19,7 +19,7 @@ The Bus Booking System is a simple backend application built using **Kotlin**, *
 - The application consists of Controllers, Services, Repositories, and a Security Component (JWT).
 - All data is stored in an H2 In-Memory Database.
 
-<img src="images/architecture_diagram.png" alt="alt text" width="1135"/>
+<img src="images/diagram_architecture.png" alt="alt text" width="1209"/>
 
 ### Flow Diagram
 - The flow starts with the User interacting with the Auth Controller for authentication, which forwards requests to the
@@ -27,7 +27,16 @@ The Bus Booking System is a simple backend application built using **Kotlin**, *
 - The Bus Controller and Booking Controller handle bus-related and booking-related operations, respectively,
   communicating with their respective services and repositories.
 
-  <img src="images/flow_diagram.png" alt="alt text" width="1164"/>
+- Authentication Flow:
+  - Start: Client → AuthenticationService → JwtService → Return JWT to Client. 
+- Bus Management Flow (CRUD):
+  - Start: Client → BusService → BusRepository → Update DB → Return Response.
+- Bus Search Flow:
+  - Start: Client → BusService → BusRepository → Fetch Data → Return Buses. 
+- Booking Flow:
+  - Start: Client → BookingService → BookingRepository → Check Availability → Confirm/Reject Booking → Update DB.
+  
+<img src="images/diagram_flow.png" alt="alt text" width="1263"/>
 
 ### Project Structure
 ```css
@@ -178,3 +187,8 @@ You can use **Postman** or **Thunder Client** to send HTTP requests to the API e
 ## Documentations
 - [Bus Booking System - Documentation with Screenshots](Documentation.md)
 - [Reference Documentation](HELP.md)
+- [Reference Documentation](HELP.md)
+
+## External Links
+- [Bus Booking System - Documentation with Screenshots](https://github.com/mghisham/Bus-Booking-System/blob/main/Documentation.md)
+- [This Readme](https://github.com/mghisham/Bus-Booking-System/blob/main/README.md)
