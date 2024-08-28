@@ -31,32 +31,41 @@ The Bus Booking System is a simple backend application built using **Kotlin**, *
 
 ### Project Structure
 ```css
-bus-booking-system/
+Bus-Booking-System/
 │
 ├── src/main/kotlin/com/hm/bookingsystem/
 │    ├── BookingSystemApplication.kt
 │    ├── GlobalExceptionHandler.kt
 │    ├── ServletInitializer.kt
 │    ├── controller/
-│    │    ├── AuthController.kt
+│    │    ├── AuthenticationController.kt
 │    │    ├── BusController.kt
 │    │    └── BookingController.kt
 │    ├── model/
 │    │    ├── Authentication.kt
 │    │    ├── Customer.kt
 │    │    ├── ErrorResponse.kt
+│    │    ├── Booking.kt
 │    │    ├── Bus.kt
-│    │    └── Booking.kt
+│    │    └── request/
+│    │          ├── AuthRequest.kt
+│    │          └── BookingRequest.kt
 │    ├── repository/
 │    │    ├── CustomerRepository.kt
 │    │    ├── BusRepository.kt
 │    │    └── BookingRepository.kt
+│    ├── extensions/
+│    │    └── Extensions.kt
 │    ├── service/
-│    │    ├── AuthService.kt
+│    │    ├── AuthenticationService.kt
 │    │    ├── BusService.kt
+│    │    ├── JwtService.kt
 │    │    └── BookingService.kt
-│    └── security/
-│         └── JwtUtil.kt
+│    └── config/
+│         ├── ApplicationConfiguration.kt
+│         ├── JwtAuthenticationFilter.kt
+│         ├── DemoDataRunner.kt
+│         └── SecurityConfiguration.kt
 ├── src/main/resources/
 │    ├── application.properties
 └── build.gradle.kts
@@ -69,7 +78,7 @@ bus-booking-system/
   - **Request Body**:
     ```json
     {
-      "phone": "string",
+      "username": "string",
       "password": "string"
     }
     ```
@@ -77,7 +86,8 @@ bus-booking-system/
     ```json
     {
       "token": "jwt-token",
-      "status": "api-status"
+      "status": "success/failure",
+      "expiry": 3600000
     }
     ```
 
@@ -93,8 +103,8 @@ bus-booking-system/
       "bus_number": "string",
       "bus_name": "string",
       "travel_company": "string",
-      "capacity": number,
-      "available_seats": number,
+      "capacity": "number",
+      "available_seats": "number",
       "source": "string",
       "destination": "string"
     }
@@ -121,7 +131,7 @@ bus-booking-system/
       "booking_date": "string",
       "source": "string",
       "destination": "string",
-      "total_seats": number
+      "total_seats": "number"
     }
     ```
 

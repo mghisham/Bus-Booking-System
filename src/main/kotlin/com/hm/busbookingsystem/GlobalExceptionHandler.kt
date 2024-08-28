@@ -12,7 +12,11 @@ class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException::class)
     fun handleNotFoundException(e: NotFoundException): ResponseEntity<ErrorResponse> {
         return ResponseEntity(
-            ErrorResponse(status = "Failed", code = e.status.value(), message = e.message),
+            ErrorResponse(
+                status = "Not found : Couldn't find out the expected resource",
+                code = e.status.value(),
+                message = e.message
+            ),
             e.status
         ).also {
             e.printStackTrace()
@@ -41,7 +45,7 @@ class GlobalExceptionHandler {
                 code = HttpStatus.FORBIDDEN.value(),
                 message = e.message.orEmpty()
             ),
-            HttpStatus.FORBIDDEN
+            HttpStatus.BAD_REQUEST
         ).also {
             e.printStackTrace()
         }
@@ -51,7 +55,9 @@ class GlobalExceptionHandler {
     fun handleAuthException(e: AuthException): ResponseEntity<ErrorResponse> {
         return ResponseEntity(
             ErrorResponse(
-                status = "Authentication failed", code = HttpStatus.UNAUTHORIZED.value(), message = e.message
+                status = "Authentication failed",
+                code = HttpStatus.UNAUTHORIZED.value(),
+                message = e.message
             ),
             HttpStatus.UNAUTHORIZED
         ).also {
