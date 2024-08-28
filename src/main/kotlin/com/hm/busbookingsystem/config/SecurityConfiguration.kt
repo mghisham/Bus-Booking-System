@@ -23,10 +23,12 @@ class SecurityConfiguration(
         http.csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers("/booking-system/authenticate", "/h2-console/**")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
+            .requestMatchers(
+                "/booking-system/authenticate", "/booking-system/bus", "/h2-console/**"
+            ).permitAll()
+            .requestMatchers(
+                "/booking-system/search", "/booking-system/book"
+            ).authenticated()
             .and()
             .headers()
             .frameOptions()
